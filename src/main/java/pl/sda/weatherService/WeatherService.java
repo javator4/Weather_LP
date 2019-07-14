@@ -3,6 +3,7 @@ package pl.sda.weatherService;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 import pl.sda.model.Current;
+import pl.sda.model.Location;
 
 import java.io.IOException;
 import java.net.URL;
@@ -13,6 +14,7 @@ public class WeatherService {
     private String url;
     private String key;
     private String finalURL;
+    private String data = "";
 
 
     public WeatherService(String url, String key) {
@@ -22,34 +24,56 @@ public class WeatherService {
 
     }
 
-    public Current getCityWeather(String city) {
-        this.finalURL = this.finalURL + city;
-        System.out.println(this.finalURL);
+    public WeatherService getJSONData(String city) {
+        if (this.data.isEmpty()) {
+            this.finalURL = finalURL + city;
+            try {
+                this.data = IOUtils.toString(new URL(this.finalURL),
+                        Charset.forName("UTF-8"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }}
 
-        try {
-            String data = IOUtils.toString(new URL(this.finalURL),
-                    Charset.forName("UTF-8"));
-            JSONObject jsonobject = new JSONObject(data);
-            String temp = jsonobject.getJSONObject("current").get("temp_c").toString();
-            System.out.println(temp);
+            return this;
 
-            Current current = new Current();
-            current.setHumidity(Integer.parseInt(temp));
-            current.setWind_kmph(Float.parseFloat(temp));
-            current.setIs_day(Integer.parseInt(temp));
-            current.setCloud(Integer.parseInt(temp));
-            current.setWind_degree(Integer.parseInt(temp));
-            current.setTemp_c(Float.parseFloat(temp));
-
-            return current;
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        return null;
     }
 
+
+    public Current getCityWeather() {
+
+
+        JSONObject jsonobject = new JSONObject(data);
+
+        String temp = jsonobject.getJSONObject("current")
+                .get("temp_c").toString();
+        System.out.println(temp);
+
+        Current current = Current.builder()
+                .temp_c(Float.parseFloat(temp))
+                .humidity(Integer.parseInt(temp))
+                .build();
+        return current;
+    }
+
+
+    public Location getLocation() {
+        String stringKey = "location";
+        JSONObject jsonObject = new JSONObject(data).getJSONObject(stringKey);
+
+        String lat = jsonObject.get("lat").toString();
+        String lon = jsonObject.get("lon").toString();
+        String country = jsonObject.get("country").toString();
+        String name = jsonObject.get("name").toString();
+
+        Location location = Location.builder()
+                .lat(Float.parseFloat(lat))
+                .lon(Float.parseFloat(lon))
+                .country(country)
+                .name(name).build();
+
+
+        return location;
+
+    }
 }
+
