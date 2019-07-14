@@ -4,7 +4,7 @@ import org.json.JSONObject;
 import pl.sda.model.Current;
 import pl.sda.model.Location;
 import pl.sda.model.Weather;
-import pl.sda.weatherService.WeatherService;
+import pl.sda.WeatherService;
 
 public class OrgImplementation implements WeatherForecast {
 

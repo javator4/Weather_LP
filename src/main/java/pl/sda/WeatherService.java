@@ -1,4 +1,4 @@
-package pl.sda.;
+package pl.sda;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
@@ -13,15 +13,14 @@ import java.nio.charset.Charset;
 public class WeatherService {
 
     private String url;
-    private String key;
+    private String apiKey;
     private String finalURL;
     private String data = "";
 
-
-    public WeatherService(String url, String key) {
+    public WeatherService(String url, String apiKey) {
         this.url = url;
-        this.key = key;
-        this.finalURL = this.url + "?key=" + key + "&q=";
+        this.apiKey = apiKey;
+        this.finalURL = this.url + "?key=" + apiKey + "&q=";
     }
 
     public String getJSONData(String city){
