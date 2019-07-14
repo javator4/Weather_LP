@@ -50,7 +50,6 @@ public class WeatherService {
 
         Current current = Current.builder()
                 .temp_c(Float.parseFloat(temp))
-                .humidity(Integer.parseInt(temp))
                 .build();
         return current;
     }
