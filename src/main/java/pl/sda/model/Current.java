@@ -4,9 +4,12 @@ package pl.sda.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Current {
 
     private int last_updated_epoch;
@@ -30,4 +33,6 @@ public class Current {
     private int vis_km;
     private int vis_miles;
     private int uv;
+    private float gust_mph;
+    private float gust_kph;
 }
