@@ -1,4 +1,10 @@
 package pl.sda;
 
-public class JsonDataOrg {
+import pl.sda.model.Weather;
+
+public class JsonDataOrg extends AbstractJsonData {
+    @Override
+    Weather getWeather() {
+        return null;
+    }
 }

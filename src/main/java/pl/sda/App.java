@@ -32,11 +32,11 @@ public class App
 
         String url =
                 "http://api.apixu.com/v1/current.json" +
-                        "?key=d48c0d5e40054b6a9e571834181808&q=Paris";
+                        "key=8480236ee7a3432fa6781558191307&q=Paris";
 
         WeatherService weatherService = new WeatherService(
                 "http://api.apixu.com/v1/current.json",
-                "d48c0d5e40054b6a9e571834181808"
+                "8480236ee7a3432fa6781558191307"
         );
 
         WeatherForecast weatherForecast
@@ -46,6 +46,12 @@ public class App
 
         System.out.println(weatherForecast.getWeather());
 
+        JsonDataFaster jsonDataFaster = new JsonDataFaster();
+        jsonDataFaster.setApiKey("8480236ee7a3432fa6781558191307");
+        jsonDataFaster.setUrl("http://api.apixu.com/v1/current.json");
+        jsonDataFaster.build();
+
+        System.out.println(jsonDataFaster.getWeather());
 
     }
 }
