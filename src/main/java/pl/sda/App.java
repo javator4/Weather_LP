@@ -49,6 +49,7 @@ public class App
         JsonDataFaster jsonDataFaster = new JsonDataFaster();
         jsonDataFaster.setApiKey("8480236ee7a3432fa6781558191307");
         jsonDataFaster.setUrl("http://api.apixu.com/v1/current.json");
+        jsonDataFaster.setCity("Warszawa");
         jsonDataFaster.build();
 
         System.out.println(jsonDataFaster.getWeather());
