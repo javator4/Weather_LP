@@ -54,5 +54,10 @@ public class App
 
         System.out.println(jsonDataFaster.getWeather());
 
+        JsonDataOrg jsonDataOrg = new JsonDataOrg();
+        jsonDataOrg.setApiKey("8480236ee7a3432fa6781558191307");
+        jsonDataOrg.setUrl("http://api.apixu.com/v1/current.json");
+        jsonDataOrg.setCity("Warszawa");
+        jsonDataOrg.build();
     }
 }
