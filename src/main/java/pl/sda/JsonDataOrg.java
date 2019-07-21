@@ -8,13 +8,13 @@ import pl.sda.model.Weather;
 @Data
 public class JsonDataOrg extends AbstractJsonData {
 
-    private WeatherService weatherService;
+
     private String city;
 
     @Override
     Weather getWeather() {
         JSONObject jsonObject = new JSONObject
-                (this.weatherService.getJSONData(this.city));
+                (this.getJSONData(this.city));
 
         String temp = jsonObject.getJSONObject("current")
                 .get("temp_c").toString();
